@@ -1,0 +1,13 @@
+### Project ###
+build
+*.properties
+logs
+target
+sources
+.classpath
+.project
+.settings/
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
