@@ -1,4 +1,4 @@
-package com.gazizov.railwaymanager.domain;
+package com.gazizov.railwaymanager.db.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

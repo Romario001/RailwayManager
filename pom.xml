@@ -9,11 +9,54 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+
     <modules>
-        <module>db</module>
+        <module>persistence</module>
     </modules>
 
 <dependencies>
+    <!-- Spring core -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>5.1.8.RELEASE</version>
+    </dependency>
+
+    <!-- Spring context -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.1.8.RELEASE</version>
+    </dependency>
+
+    <!-- Spring web -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.1.8.RELEASE</version>
+    </dependency>
+
+    <!-- Spring webmvc-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.1.8.RELEASE</version>
+    </dependency>
+
+    <!-- Spring ORM-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>5.1.8.RELEASE</version>
+    </dependency>
+
+    <!-- Servlet -->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
 
     <!-- Tomcat -->
     <dependency>
@@ -37,12 +80,54 @@
         <scope>provided</scope>
     </dependency>
 
+    <!-- Module Persistence-->
+    <dependency>
+        <groupId>gazizov.com</groupId>
+        <artifactId>persistence</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <scope>compile</scope>
+    </dependency>
+
+    <!-- Hibernate -->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.4.4.Final</version>
+    </dependency>
+
+    <!-- Hibernate entity manager-->
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>5.4.4.Final</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>2.1.9.RELEASE</version>
+    </dependency>
+
+
 </dependencies>
 
     <properties>
         <java.version>11</java.version>
         <lombok.version>1.18.10 </lombok.version>
     </properties>
+
+    <build>
+    <plugins>
+    <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+        </configuration>
+    </plugin>
+
+    </plugins>
+    </build>
 
 
 </project>

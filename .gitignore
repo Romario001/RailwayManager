@@ -4,6 +4,7 @@ build
 logs
 target
 sources
+out
 .classpath
 .project
 .settings/
@@ -11,3 +12,4 @@ sources
 
 ### IntelliJ IDEA ###
 .idea
+*.iml
