@@ -25,7 +25,7 @@ class StationTrainId implements Serializable {
 @Setter
 @Entity
 @Table(name = "schedule")
-public class ShedulePO {
+public class SchedulePO {
 
     @EmbeddedId
     StationTrainId stationTrainId;

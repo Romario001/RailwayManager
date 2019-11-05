@@ -22,11 +22,11 @@ public class TicketPO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ticketId;
 
-    @ManyToOne(targetEntity = TrainPO.class)
+    //@ManyToOne(targetEntity = TrainPO.class)
     @Column(name = "train_id")
     private Integer trainId;
 
-    @ManyToOne(targetEntity = PassengerPO.class)
+    //@ManyToOne(targetEntity = PassengerPO.class)
     @Column(name = "passenger_id")
     private Integer passengerId;
 

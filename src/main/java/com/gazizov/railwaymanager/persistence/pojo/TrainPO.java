@@ -22,7 +22,7 @@ public class TrainPO {
     @Id
     @Column(name="train_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @OneToMany(targetEntity = TicketPO.class)
+//    @OneToMany(targetEntity = TicketPO.class)
     private Integer trainId;
 
     @Column(name="passenger_count")

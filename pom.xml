@@ -9,11 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-
-    <modules>
-        <module>persistence</module>
-    </modules>
-
 <dependencies>
     <!-- Spring core -->
     <dependency>
@@ -80,14 +75,6 @@
         <scope>provided</scope>
     </dependency>
 
-    <!-- Module Persistence-->
-    <dependency>
-        <groupId>gazizov.com</groupId>
-        <artifactId>persistence</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <scope>compile</scope>
-    </dependency>
-
     <!-- Hibernate -->
     <dependency>
         <groupId>org.hibernate</groupId>
@@ -102,11 +89,6 @@
         <version>5.4.4.Final</version>
     </dependency>
 
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>2.1.9.RELEASE</version>
-    </dependency>
 
 
 </dependencies>
@@ -120,6 +102,7 @@
     <plugins>
     <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
         <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
