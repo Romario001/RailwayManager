@@ -12,21 +12,21 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 
-    private static final SessionFactory currentSessionFactory;
+//    private static final SessionFactory currentSessionFactory;
 
-    static {
-        try{
-            Configuration configuration = new Configuration();
-            configuration.configure();
+//    static {
+//        try{
+//            currentSessionFactory = new Configuration()
+//                    .configure("D:\\Books\\Developing\\IdeaProjectsFromQRush\\tschool\\RailwayManager\\src\\main\\resources\\hibernate.cfg.xml")
+//                    .buildSessionFactory();
+//
+//        } catch (Throwable ex) {
+//            throw new ExceptionInInitializerError(ex);
+//        }
+//
+//    }
 
-            currentSessionFactory = configuration.buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-
-    }
-
-    public static Session getSession() throws HibernateException{
-        return currentSessionFactory.openSession();
-    }
+//    public static Session getSession() throws HibernateException{
+//        return currentSessionFactory.openSession();
+//    }
 }

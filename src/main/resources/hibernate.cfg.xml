@@ -9,7 +9,7 @@
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/mysql?useUnicode=true&amp;serverTimezone=UTC
+            jdbc:mysql://localhost:3306/railwaymanager?useUnicode=true&amp;serverTimezone=UTC
         </property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">1234</property>
@@ -38,6 +38,5 @@
         <mapping class="com.gazizov.railwaymanager.persistence.pojo.RolePO"/>
 
     </session-factory>
-
 
 </hibernate-configuration>
