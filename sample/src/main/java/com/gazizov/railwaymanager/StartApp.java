@@ -8,7 +8,6 @@ import com.gazizov.railwaymanager.persistence.pojo.UserPO;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 07.11.2019
@@ -18,18 +17,16 @@ import java.util.List;
 public class StartApp {
 
 
-    private static UserDao userDao;
-
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);
 
-        if (false) {
+        UserDao userDao;
+
+        if (true) {
             userDao = context.getBean(UserDaoImpl1.class);
         } else {
-            userDao = new UserDaoImpl2();
+            userDao = new UserDaoImpl2(new ArrayList<>());
         }
-
-        List<UserPO> userPOList = new ArrayList<>();
 
         UserPO User1 = new UserPO();
         User1.setLogin("Flash");
@@ -38,9 +35,6 @@ public class StartApp {
         User1.setLastName("Flash");
         User1.setUserId(1);
 
-        userPOList.add(User1);
-
-        System.out.println(userPOList);
         System.out.println(User1);
 
         userDao.saveUser(User1);

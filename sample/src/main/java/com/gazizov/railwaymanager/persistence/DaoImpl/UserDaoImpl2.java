@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * 06.11.2019
@@ -15,12 +14,11 @@ import java.util.List;
  * @author Roman Gazizov
  */
 
-
 @AllArgsConstructor
 public class UserDaoImpl2
         implements UserDao {
 
-    public ArrayList<UserPO> userPOList;
+    private ArrayList<UserPO> userPOList;
 
     @Override
     public void saveUser(UserPO userPO) {

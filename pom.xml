@@ -79,11 +79,11 @@
 <!--    </dependency>-->
 
     <!-- Spring ORM-->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-orm</artifactId>
-        <version>5.1.8.RELEASE</version>
-    </dependency>
+<!--    <dependency>-->
+<!--        <groupId>org.springframework</groupId>-->
+<!--        <artifactId>spring-orm</artifactId>-->
+<!--        <version>5.1.8.RELEASE</version>-->
+<!--    </dependency>-->
 
     <!-- Servlet -->
     <dependency>
@@ -100,13 +100,13 @@
         <version>9.0.27</version>
     </dependency>
 
-    <!-- Lombok-->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-        <scope>provided</scope>
-    </dependency>
+<!--    &lt;!&ndash; Lombok&ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.projectlombok</groupId>-->
+<!--        <artifactId>lombok</artifactId>-->
+<!--        <version>${lombok.version}</version>-->
+<!--        <scope>provided</scope>-->
+<!--    </dependency>-->
 
 
 </dependencies>
