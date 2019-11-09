@@ -5,8 +5,9 @@ import com.gazizov.railwaymanager.persistence.pojo.UserPO;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * 06.11.2019
@@ -14,11 +15,18 @@ import java.util.Collection;
  * @author Roman Gazizov
  */
 
-@AllArgsConstructor
+
+
 public class UserDaoImpl1
         implements UserDao {
 
     private EntityManagerFactory entityManagerFactory;
+
+    public UserDaoImpl1(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
+
+
 
     @Override
     public void saveUser(UserPO userPO) {
@@ -26,8 +34,8 @@ public class UserDaoImpl1
     }
 
     @Override
-    public Collection<UserPO> findAll() {
-        Query query = entityManagerFactory.createEntityManager().createQuery("select login from UserPO.class");
+    public List findAll() {
+        Query query = entityManagerFactory.createEntityManager().createQuery("from UserPO");
         return query.getResultList();
     }
 }

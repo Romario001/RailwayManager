@@ -3,10 +3,9 @@ package com.gazizov.railwaymanager.persistence.DaoImpl;
 import com.gazizov.railwaymanager.persistence.dao.UserDao;
 import com.gazizov.railwaymanager.persistence.pojo.UserPO;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * 06.11.2019
@@ -26,7 +25,7 @@ public class UserDaoImpl2
     }
 
     @Override
-    public Collection<UserPO> findAll() {
+    public List findAll() {
         return userPOList;
     }
 }

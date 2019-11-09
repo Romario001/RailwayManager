@@ -2,7 +2,7 @@ package com.gazizov.railwaymanager.persistence.dao;
 
 import com.gazizov.railwaymanager.persistence.pojo.UserPO;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * 06.11.2019
@@ -15,5 +15,5 @@ public interface UserDao {
 
     void saveUser(UserPO userPO);
 
-    Collection<UserPO> findAll();
+    List findAll();
 }

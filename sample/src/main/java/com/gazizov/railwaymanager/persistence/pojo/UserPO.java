@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 06.11.2019
@@ -15,11 +16,11 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "Users")
-public class UserPO {
+public class UserPO implements Serializable {
 
     @Id
     @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
     @Column(name = "login")
