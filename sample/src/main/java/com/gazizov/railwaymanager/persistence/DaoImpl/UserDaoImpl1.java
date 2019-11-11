@@ -2,11 +2,9 @@ package com.gazizov.railwaymanager.persistence.DaoImpl;
 
 import com.gazizov.railwaymanager.persistence.dao.UserDao;
 import com.gazizov.railwaymanager.persistence.pojo.UserPO;
-import lombok.AllArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -25,6 +23,8 @@ public class UserDaoImpl1
     public UserDaoImpl1(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
+    @Transactional
     @Override
     public void saveUser(UserPO userPO) {
         entityManager.persist(userPO);

@@ -2,6 +2,7 @@ package com.gazizov.railwaymanager;
 
 import com.gazizov.railwaymanager.persistence.Configuration.PersistenceConfig;
 import com.gazizov.railwaymanager.persistence.DaoImpl.UserDaoImpl1;
+import com.gazizov.railwaymanager.persistence.dao.UserDao;
 import com.gazizov.railwaymanager.persistence.pojo.UserPO;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -19,7 +20,7 @@ public class StartApp {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);
 
-        UserDaoImpl1 userDao = context.getBean(UserDaoImpl1.class);
+        UserDao userDao = context.getBean(UserDao.class);
 
      //        if (true) {
 //            UserDaoImpl1 userDao = context.getBean(UserDaoImpl1.class);
