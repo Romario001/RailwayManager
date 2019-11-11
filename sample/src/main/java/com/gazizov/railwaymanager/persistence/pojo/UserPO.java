@@ -21,7 +21,7 @@ public class UserPO implements Serializable {
     @Id
     @Column(name = "user_id")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "login")
     private String login;

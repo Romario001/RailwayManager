@@ -33,15 +33,15 @@ public class StartApp {
         User1.setPassword("Flash");
         User1.setFirstName("Flash");
         User1.setLastName("Flash");
-        User1.setUserId(1);
+//        User1.setUserId(1);
 
         System.out.println(User1);
 
         userDao.saveUser(User1);
 
-        System.out.println(userDao.findAll());
-//        userDao.findAll().
-//                forEach(System.out::println);
+//        System.out.println(userDao.findAll());
+        userDao.findAll().
+                forEach(System.out::println);
 
     }
 }

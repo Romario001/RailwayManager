@@ -2,29 +2,20 @@ package com.gazizov.railwaymanager.persistence.Configuration;
 
 import com.gazizov.railwaymanager.persistence.DaoImpl.UserDaoImpl1;
 import com.gazizov.railwaymanager.persistence.dao.UserDao;
-import com.google.common.base.Preconditions;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager;
+import org.springframework.orm.jpa.persistenceunit.PersistenceUnitManager;
+import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import java.util.Properties;
+import javax.sql.DataSource;
+import java.util.HashMap;
 
 /**
  * 06.11.2019
@@ -34,46 +25,62 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:persistence-mysql.properties")
-@ComponentScan("com.gazizov.railwaymanager.persistence")
+//@PropertySource("classpath:persistence-mysql.properties")
+//@ComponentScan("com.gazizov.railwaymanager.persistence")
 public class PersistenceConfig {
 
-    private final Environment environment;
 
-    public PersistenceConfig(Environment environment) {
-        super();
-        this.environment = environment;
-    }
+//    private final Environment environment;
+//
+//    public PersistenceConfig(Environment environment) {
+//        super();
+//        this.environment = environment;
+//    }
 
     @Bean
     public UserDao userDao() {
-        Properties properties = System.getProperties();
-        return new UserDaoImpl1(entityManagerFactory().getNativeEntityManagerFactory().createEntityManager());
+        return new UserDaoImpl1();
     }
 
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean em
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(PersistenceUnitManager persistenceUnitManager) {
+        LocalContainerEntityManagerFactoryBean entityManagerFactory
                 = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-        em.setPackagesToScan("com.gazizov.railwaymanager.persistence.pojo");
 
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        entityManagerFactory.setPersistenceUnitName("pu_sample");
+        entityManagerFactory.setPersistenceUnitManager(persistenceUnitManager);
 
-        return em;
+        return entityManagerFactory;
+    }
+
+
+    @Bean
+    public PersistenceUnitManager persistenceUnitManager(final DataSource dataSource) {
+        DefaultPersistenceUnitManager persistenceUnitManager = new DefaultPersistenceUnitManager();
+
+        persistenceUnitManager.setDataSources(new HashMap<String, DataSource>() {
+            { put("ds_sample", dataSource); }
+        });
+        persistenceUnitManager.setPersistenceXmlLocation("persistence.xml");
+
+        return persistenceUnitManager;
     }
 
     @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName(Preconditions.checkNotNull(environment.getProperty("spring.datasource.driver-class-name")));
-        dataSource.setUsername(Preconditions.checkNotNull(environment.getProperty("spring.datasource.username")));
-        dataSource.setPassword(Preconditions.checkNotNull(environment.getProperty("spring.datasource.password")));
-        dataSource.setUrl(Preconditions.checkNotNull(environment.getProperty("spring.datasource.url")));
+//        dataSource.setDriverClassName(Preconditions.checkNotNull(environment.getProperty("spring.datasource.driver-class-name")));
+//        dataSource.setUsername(Preconditions.checkNotNull(environment.getProperty("spring.datasource.username")));
+//        dataSource.setPassword(Preconditions.checkNotNull(environment.getProperty("spring.datasource.password")));
+//        dataSource.setUrl(Preconditions.checkNotNull(environment.getProperty("spring.datasource.url")));
+
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUsername("root");
+        dataSource.setPassword("1234");
+        dataSource.setUrl("jdbc:mysql://localhost:3306" +
+                "/railwaymanager?useUnicode=true&serverTimezone=UTC&createDatabaseIfNotExists=true");
 
         return dataSource;
     }
@@ -98,22 +105,23 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
+    public PersistenceAnnotationBeanPostProcessor persistenceAnnotationBeanPostProcessor() {
+        return new PersistenceAnnotationBeanPostProcessor();
     }
 
-    private Properties additionalProperties() {
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", Preconditions.checkNotNull(environment.getProperty("hibernate.dialect")));
-        properties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(environment.getProperty("hibernate.hbm2ddl.auto")));
-        properties.setProperty("hibernate.connection.pool_size", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.pool_size")));
-        properties.setProperty("hibernate.show_sql", Preconditions.checkNotNull(environment.getProperty("hibernate.show_sql")));
-        properties.setProperty("hibernate.current_session_context_class", Preconditions.checkNotNull(environment.getProperty("hibernate.current_session_context_class")));
-        properties.setProperty("hibernate.connection.CharSet", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.CharSet")));
-        properties.setProperty("hibernate.connection.characterEncoding", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.characterEncoding")));
-        properties.setProperty("hibernate.connection.useUnicode", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.useUnicode")));
 
-        return properties;
-    }
+//    private Properties additionalProperties() {
+//        Properties properties = new Properties();
+//        properties.setProperty("hibernate.dialect", Preconditions.checkNotNull(environment.getProperty("hibernate.dialect")));
+//        properties.setProperty("hibernate.hbm2ddl.auto", Preconditions.checkNotNull(environment.getProperty("hibernate.hbm2ddl.auto")));
+//        properties.setProperty("hibernate.connection.pool_size", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.pool_size")));
+//        properties.setProperty("hibernate.show_sql", Preconditions.checkNotNull(environment.getProperty("hibernate.show_sql")));
+//        properties.setProperty("hibernate.current_session_context_class", Preconditions.checkNotNull(environment.getProperty("hibernate.current_session_context_class")));
+//        properties.setProperty("hibernate.connection.CharSet", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.CharSet")));
+//        properties.setProperty("hibernate.connection.characterEncoding", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.characterEncoding")));
+//        properties.setProperty("hibernate.connection.useUnicode", Preconditions.checkNotNull(environment.getProperty("hibernate.connection.useUnicode")));
+//
+//        return properties;
+//    }
 
 }
