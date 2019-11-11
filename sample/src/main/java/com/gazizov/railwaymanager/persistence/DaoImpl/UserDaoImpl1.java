@@ -28,6 +28,7 @@ public class UserDaoImpl1
     @Override
     public void saveUser(UserPO userPO) {
         entityManager.persist(userPO);
+//        entityManager.flush();
     }
 
     @Override

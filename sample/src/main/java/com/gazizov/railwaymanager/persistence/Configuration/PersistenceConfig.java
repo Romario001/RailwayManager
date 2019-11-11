@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.Properties;
@@ -46,7 +47,7 @@ public class PersistenceConfig {
 
     @Bean
     public UserDao userDao() {
-//        Properties properties = System.getProperties();
+        Properties properties = System.getProperties();
         return new UserDaoImpl1(entityManagerFactory().getNativeEntityManagerFactory().createEntityManager());
     }
 
@@ -77,21 +78,21 @@ public class PersistenceConfig {
         return dataSource;
     }
 
+//    @Bean
+//    public LocalSessionFactoryBean sessionFactory() {
+//        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
+//        localSessionFactoryBean.setDataSource(dataSource());
+//        localSessionFactoryBean.setPackagesToScan("com.gazizov.railwaymanager");
+//        localSessionFactoryBean.setHibernateProperties(additionalProperties());
+//
+//        return localSessionFactoryBean;
+//    }
+
+
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
-        localSessionFactoryBean.setDataSource(dataSource());
-        localSessionFactoryBean.setPackagesToScan("com.gazizov.railwaymanager");
-        localSessionFactoryBean.setHibernateProperties(additionalProperties());
-
-        return localSessionFactoryBean;
-    }
-
-
-    @Bean
-    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(sessionFactory);
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
 
         return transactionManager;
     }
