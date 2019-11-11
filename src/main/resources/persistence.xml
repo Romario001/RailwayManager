@@ -4,15 +4,21 @@
                                  http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
 
-    <persistence-unit name="pu_sample" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="pu_railwaymanager" transaction-type="RESOURCE_LOCAL">
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <non-jta-data-source>ds_sample</non-jta-data-source>
+        <non-jta-data-source>ds_railwaymanager</non-jta-data-source>
 
-                <class>com.gazizov.railwaymanager.persistence.pojo.UserPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.TicketPO</class>
+<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
+<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
+<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
+<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
 
         <properties>
+<!--            <property name="persistenceXmlLocation" value="classpath*:persistence.xml" />-->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/

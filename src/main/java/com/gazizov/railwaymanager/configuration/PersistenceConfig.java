@@ -1,7 +1,9 @@
-package com.gazizov.railwaymanager.persistence.Configuration;
+package com.gazizov.railwaymanager.configuration;
 
-import com.gazizov.railwaymanager.persistence.DaoImpl.UserDaoImpl1;
-import com.gazizov.railwaymanager.persistence.dao.UserDao;
+import com.gazizov.railwaymanager.services.PassengerDao;
+import com.gazizov.railwaymanager.services.TicketDao;
+import com.gazizov.railwaymanager.services.impl.PassengerDaoImpl;
+import com.gazizov.railwaymanager.services.impl.TicketDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -38,9 +40,25 @@ public class PersistenceConfig {
 //    }
 
     @Bean
-    public UserDao userDao() {
-        return new UserDaoImpl1();
+    public PassengerDao passengerDao() {
+        return new PassengerDaoImpl();
     }
+
+    @Bean
+    public TicketDao ticketDao() {
+        return new TicketDaoImpl();
+    }
+
+//    @Bean
+//    public StationDao stationDao() {
+//        return new StationDaoImpl();
+//    }
+//
+//    @Bean
+//    public TrainDao trainDao() {
+//        return new TrainDaoImpl();
+//    }
+//
 
 
     @Bean
@@ -48,7 +66,7 @@ public class PersistenceConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactory
                 = new LocalContainerEntityManagerFactoryBean();
 
-        entityManagerFactory.setPersistenceUnitName("pu_sample");
+        entityManagerFactory.setPersistenceUnitName("pu_railwaymanager");
         entityManagerFactory.setPersistenceUnitManager(persistenceUnitManager);
 
         return entityManagerFactory;
@@ -60,15 +78,15 @@ public class PersistenceConfig {
         DefaultPersistenceUnitManager persistenceUnitManager = new DefaultPersistenceUnitManager();
 
         persistenceUnitManager.setDataSources(new HashMap<String, DataSource>() {
-            { put("ds_sample", dataSource); }
+            { put("ds_railwaymanager", dataSource); }
         });
-        persistenceUnitManager.setPersistenceXmlLocation("persistence.xml");
+        persistenceUnitManager.setPersistenceXmlLocation("classpath*:persistence.xml");
 
         return persistenceUnitManager;
     }
 
     @Bean
-    public DriverManagerDataSource dataSource() {
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 //        dataSource.setDriverClassName(Preconditions.checkNotNull(environment.getProperty("spring.datasource.driver-class-name")));

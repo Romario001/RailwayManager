@@ -2,9 +2,11 @@ package com.gazizov.railwaymanager.persistence.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -13,6 +15,7 @@ import java.util.List;
  * @author Roman Gazizov
  */
 
+@ToString
 @Getter
 @Setter
 @Entity
@@ -23,7 +26,7 @@ public class PassengerPO {
     @Column(name = "passenger_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@OneToMany(targetEntity = TicketPO.class)
-    private Integer passengerId;
+    private Long passengerId;
 
     @Column(name = "login")
     private String login;
@@ -40,21 +43,16 @@ public class PassengerPO {
     @Column(name = "birth_date")
     private String birthDate;
 
-    @Override
-    public String toString() {
-        return "PassengerPO{" +
-                "passengerId=" + passengerId +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                '}';
-    }
+    @Column(name = "role_id")
+    private Integer roleId;
+
+    @OneToMany(mappedBy = "passengers")
+    private List<TicketPO> passengerTickets;
+
 
 
     //private Boolean active;
 
 //    private List<RolePO> roles = new ArrayList<>();
-//    private List<TicketPO> passengerTickets;//ontomany,
+
 }

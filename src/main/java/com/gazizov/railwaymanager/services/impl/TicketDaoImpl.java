@@ -1,14 +1,15 @@
 package com.gazizov.railwaymanager.services.impl;
 
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
+import com.gazizov.railwaymanager.persistence.pojo.TicketPO;
 import com.gazizov.railwaymanager.services.PassengerDao;
+import com.gazizov.railwaymanager.services.TicketDao;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 05.11.2019
@@ -16,31 +17,28 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author Roman Gazizov
  */
 
-public class PassengerDaoImpl
-        implements PassengerDao {
+public class TicketDaoImpl
+        implements TicketDao {
 
 //    private final AtomicLong idGenerator = new AtomicLong();
 
     private EntityManager entityManager;
 
     @Transactional
-    public void savePassenger(PassengerPO passengerPO) {
-        if (Objects.isNull(passengerPO.getPassengerId())) {
+    public void saveTicket(TicketPO ticketPO) {
+        if (Objects.isNull(ticketPO.getTicketId())) {
 //            passengerPO.setPassengerId(idGenerator.incrementAndGet());
-            passengerPO.setFirstName(passengerPO.getFirstName());
-            passengerPO.setLastName(passengerPO.getLastName());
-            passengerPO.setPassword(passengerPO.getPassword());
-            passengerPO.setLogin(passengerPO.getLogin());
-            passengerPO.setRoleId(passengerPO.getRoleId());
-            passengerPO.setPassengerTickets(passengerPO.getPassengerTickets());
+            ticketPO.setPassengerPO(ticketPO.getPassengerPO());
+            ticketPO.setTrainId(ticketPO.getTrainId());
+
         }
 
-        entityManager.persist(passengerPO);
+        entityManager.persist(ticketPO);
     }
 
     @Override
-    public Collection<PassengerPO> findAll() {
-        return entityManager.createQuery("from PassengerPO").getResultList();
+    public Collection<TicketPO> findAll() {
+        return entityManager.createQuery("from TicketPO").getResultList();
     }
 
     @PersistenceContext(unitName = "pu_railwaymanager")

@@ -1,15 +1,14 @@
 package com.gazizov.railwaymanager;
 
-import com.gazizov.railwaymanager.configuration.PersistenseConfiguration;
+import com.gazizov.railwaymanager.configuration.PersistenceConfig;
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
+import com.gazizov.railwaymanager.persistence.pojo.TicketPO;
 import com.gazizov.railwaymanager.services.PassengerDao;
-import com.gazizov.railwaymanager.services.impl.PassengerDaoImpl;
-import org.hibernate.Session;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * 04.11.2019
@@ -77,14 +76,20 @@ public class RailwayManagerApp {
 //    }
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenseConfiguration.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);
 
         PassengerDao passengerDao = context.getBean(PassengerDao.class);
 
         PassengerPO p1 = new PassengerPO();
-        p1.setLogin("plfafds");
-        passengerDao.savePassenger(p1);
+        p1.setLogin("TheFirst");
+        p1.setPassword("FirstMan");
+        p1.setFirstName("First");
+        p1.setLastName("First");
+        p1.setBirthDate("01/02/03");
+        p1.setRoleId(1);
+        p1.setPassengerTickets(new ArrayList<>());
 
+        passengerDao.savePassenger(p1);
         passengerDao.findAll().stream().forEach(System.out::println);
     }
 }

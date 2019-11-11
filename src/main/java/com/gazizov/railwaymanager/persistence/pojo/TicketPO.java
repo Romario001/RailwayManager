@@ -20,14 +20,14 @@ public class TicketPO {
     @Id
     @Column(name = "ticket_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ticketId;
+    private Long ticketId;
 
     //@ManyToOne(targetEntity = TrainPO.class)
     @Column(name = "train_id")
-    private Integer trainId;
+    private Long trainId;
 
-    //@ManyToOne(targetEntity = PassengerPO.class)
-    @Column(name = "passenger_id")
-    private Integer passengerId;
+    @ManyToOne(targetEntity = PassengerPO.class)
+    @JoinColumn (name = "passenger_id")
+    private PassengerPO passengerPO;
 
 }

@@ -20,7 +20,7 @@ public class StationPO {
     @Id
     @Column(name="station_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer stationId;
+    private Long stationId;
 
     @Column(name="station_name")
     private String stationName;

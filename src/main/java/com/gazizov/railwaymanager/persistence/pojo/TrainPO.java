@@ -17,15 +17,16 @@ import java.util.Map;
 @Getter
 @Setter
 @Entity
-@Table(name="trains")
+@Table(name = "trains")
 public class TrainPO {
-    @Id
-    @Column(name="train_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-//    @OneToMany(targetEntity = TicketPO.class)
-    private Integer trainId;
 
-    @Column(name="passenger_count")
+    @Id
+    @Column(name = "train_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @OneToMany(targetEntity = TicketPO.class)
+    private Long trainId;
+
+    @Column(name = "passenger_count")
     private Integer passengerCount;
 
 //    private List<TicketPO> trainTickets;
