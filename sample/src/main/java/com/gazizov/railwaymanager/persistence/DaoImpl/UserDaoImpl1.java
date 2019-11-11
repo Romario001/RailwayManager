@@ -2,10 +2,8 @@ package com.gazizov.railwaymanager.persistence.DaoImpl;
 
 import com.gazizov.railwaymanager.persistence.dao.UserDao;
 import com.gazizov.railwaymanager.persistence.pojo.UserPO;
-import lombok.AllArgsConstructor;
 
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 

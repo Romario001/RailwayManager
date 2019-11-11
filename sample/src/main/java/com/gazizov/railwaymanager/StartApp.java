@@ -21,10 +21,7 @@ public class StartApp {
 
         UserDaoImpl1 userDao = context.getBean(UserDaoImpl1.class);
 
-        EntityManagerFactory entityManagerFactory = (EntityManagerFactory) context.getBean("entityManagerFactory");
-        EntityManager em = entityManagerFactory.createEntityManager();
-        em.getTransaction().begin();
-//        if (true) {
+     //        if (true) {
 //            UserDaoImpl1 userDao = context.getBean(UserDaoImpl1.class);
 //        } else {
 //            UserDaoImpl2 userDao = new UserDaoImpl2(new ArrayList<>());
@@ -41,14 +38,9 @@ public class StartApp {
 
         userDao.saveUser(User1);
 
-        em.getTransaction().commit();
-
-
         System.out.println(userDao.findAll());
 //        userDao.findAll().
 //                forEach(System.out::println);
 
-        em.close();
-        entityManagerFactory.close();
     }
 }
