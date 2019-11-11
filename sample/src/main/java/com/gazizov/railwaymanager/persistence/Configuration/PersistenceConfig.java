@@ -19,6 +19,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import java.util.Properties;
 
@@ -44,7 +47,7 @@ public class PersistenceConfig {
     @Bean
     public UserDao userDao() {
 //        Properties properties = System.getProperties();
-        return new UserDaoImpl1(entityManagerFactory().getNativeEntityManagerFactory());
+        return new UserDaoImpl1(entityManagerFactory().getNativeEntityManagerFactory().createEntityManager());
     }
 
 

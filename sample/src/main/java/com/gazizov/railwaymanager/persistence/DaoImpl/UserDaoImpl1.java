@@ -2,8 +2,11 @@ package com.gazizov.railwaymanager.persistence.DaoImpl;
 
 import com.gazizov.railwaymanager.persistence.dao.UserDao;
 import com.gazizov.railwaymanager.persistence.pojo.UserPO;
+import lombok.AllArgsConstructor;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -14,26 +17,22 @@ import java.util.List;
  */
 
 
-
 public class UserDaoImpl1
         implements UserDao {
 
-    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
-    public UserDaoImpl1(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
+    public UserDaoImpl1(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
-
-
-
     @Override
     public void saveUser(UserPO userPO) {
-        entityManagerFactory.createEntityManager().persist(userPO);
+        entityManager.persist(userPO);
     }
 
     @Override
     public List findAll() {
-        Query query = entityManagerFactory.createEntityManager().createQuery("from UserPO");
+        Query query = entityManager.createQuery("from UserPO");
         return query.getResultList();
     }
 }
