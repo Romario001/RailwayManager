@@ -30,6 +30,10 @@ public class SchedulePO {
     @EmbeddedId
     StationTrainId stationTrainId;
 
+    @Column(name="arrival_time")
+    private String arrivalTime;
+
     @Column(name="departure_time")
     private String departureTime;
+
 }

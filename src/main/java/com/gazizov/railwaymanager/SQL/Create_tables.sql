@@ -27,12 +27,22 @@ create TABLE railwaymanager.schedule
 (
     station_id     BIGINT UNSIGNED NOT NULL,
     train_id       BIGINT UNSIGNED NOT NULL,
+    arrival_time DATE,
     departure_time DATE,
     PRIMARY KEY (station_id, train_id),
     FOREIGN KEY (train_id) REFERENCES railwaymanager.trains (train_id)
         ON delete CASCADE ON update CASCADE,
     FOREIGN KEY (station_id) REFERENCES railwaymanager.stations (station_id)
         ON delete CASCADE ON update CASCADE
+);
+
+create TABLE railwaymanager.routes
+(
+    route_id SERIAL PRIMARY KEY,
+    route_name        VARCHAR(64) NOT NULL,
+    station_number    INTEGER NOT NULL ,
+    station_id        BIGINT NOT NULL,
+    train_id          BIGINT NOT NULL
 );
 
 create TABLE railwaymanager.tickets

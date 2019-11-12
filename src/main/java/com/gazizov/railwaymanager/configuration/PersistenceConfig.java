@@ -1,9 +1,9 @@
 package com.gazizov.railwaymanager.configuration;
 
-import com.gazizov.railwaymanager.services.PassengerDao;
-import com.gazizov.railwaymanager.services.TicketDao;
-import com.gazizov.railwaymanager.services.impl.PassengerDaoImpl;
-import com.gazizov.railwaymanager.services.impl.TicketDaoImpl;
+import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
+import com.gazizov.railwaymanager.persistence.dao.TicketDao;
+import com.gazizov.railwaymanager.persistence.daoimpl.PassengerDaoImpl;
+import com.gazizov.railwaymanager.persistence.daoimpl.TicketDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;

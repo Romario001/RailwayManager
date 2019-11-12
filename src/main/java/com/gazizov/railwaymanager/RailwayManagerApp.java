@@ -2,12 +2,10 @@ package com.gazizov.railwaymanager;
 
 import com.gazizov.railwaymanager.configuration.PersistenceConfig;
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
-import com.gazizov.railwaymanager.persistence.pojo.TicketPO;
-import com.gazizov.railwaymanager.services.PassengerDao;
+import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**

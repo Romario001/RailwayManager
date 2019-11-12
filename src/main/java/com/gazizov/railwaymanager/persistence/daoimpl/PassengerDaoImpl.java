@@ -1,14 +1,13 @@
-package com.gazizov.railwaymanager.services.impl;
+package com.gazizov.railwaymanager.persistence.daoimpl;
 
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
-import com.gazizov.railwaymanager.services.PassengerDao;
+import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 05.11.2019

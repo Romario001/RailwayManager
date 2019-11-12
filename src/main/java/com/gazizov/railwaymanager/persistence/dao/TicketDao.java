@@ -1,4 +1,4 @@
-package com.gazizov.railwaymanager.services;
+package com.gazizov.railwaymanager.persistence.dao;
 
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
 import com.gazizov.railwaymanager.persistence.pojo.TicketPO;
@@ -12,7 +12,7 @@ import java.util.Collection;
  */
 public interface TicketDao {
 
-    void saveTicket(TicketPO ticketPO);
+    void buyTicket(PassengerPO passengerPO);
 
-    Collection<TicketPO> findAll();
+    Collection<TicketPO> findAllTicketsToTrain();
 }

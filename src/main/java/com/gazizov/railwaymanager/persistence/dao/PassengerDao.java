@@ -1,4 +1,4 @@
-package com.gazizov.railwaymanager.services;
+package com.gazizov.railwaymanager.persistence.dao;
 
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
 
