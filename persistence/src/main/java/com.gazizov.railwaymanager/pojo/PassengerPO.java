@@ -1,13 +1,11 @@
-package com.gazizov.railwaymanager.persistence.pojo;
+package com.gazizov.railwaymanager.pojo;
 
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**

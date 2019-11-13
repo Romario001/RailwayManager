@@ -1,8 +1,8 @@
-package com.gazizov.railwaymanager.persistence.daoimpl;
+package com.gazizov.railwaymanager.daoimpl;
 
-import com.gazizov.railwaymanager.persistence.dao.TrainDao;
-import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
-import com.gazizov.railwaymanager.persistence.pojo.TrainPO;
+import com.gazizov.railwaymanager.dao.TrainDao;
+import com.gazizov.railwaymanager.pojo.PassengerPO;
+import com.gazizov.railwaymanager.pojo.TrainPO;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

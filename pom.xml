@@ -12,24 +12,29 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jpa-RailwayManager</artifactId>
+    <artifactId>main-RailwayManager</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>persistence</module>
+    </modules>
 
     <dependencies>
 
-        <!-- MySQL -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.18</version>
-            <scope>runtime</scope>
-        </dependency>
+<!--        &lt;!&ndash; MySQL &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>8.0.18</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
 
-        <!-- Spring-jdbc -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>5.1.8.RELEASE</version>
-            </dependency>
+<!--        &lt;!&ndash; Spring-jdbc &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework</groupId>-->
+<!--                <artifactId>spring-jdbc</artifactId>-->
+<!--                <version>5.1.8.RELEASE</version>-->
+<!--            </dependency>-->
 
 
 <!--        &lt;!&ndash; Java.jdbc &ndash;&gt;-->
@@ -53,19 +58,13 @@
 <!--            <version>5.4.4.Final</version>-->
 <!--        </dependency>-->
 
-<!--        &lt;!&ndash;Spring core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-core</artifactId>-->
-<!--            <version>5.1.8.RELEASE</version>-->
-<!--        </dependency>-->
-
-        <!--Spring boot -->
+        <!--Spring core -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <version>2.1.6.RELEASE</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.1.8.RELEASE</version>
         </dependency>
+
 
         <!-- Spring context -->
         <dependency>
@@ -88,12 +87,12 @@
         <!--        <version>5.1.8.RELEASE</version>-->
         <!--    </dependency>-->
 
-        <!-- Spring ORM-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>5.1.8.RELEASE</version>
-        </dependency>
+<!--        &lt;!&ndash; Spring ORM&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-orm</artifactId>-->
+<!--            <version>5.1.8.RELEASE</version>-->
+<!--        </dependency>-->
 
 <!--        &lt;!&ndash; Servlet &ndash;&gt;-->
 <!--        <dependency>-->

@@ -3,9 +3,7 @@ package com.gazizov.railwaymanager.services;
 import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
 import com.gazizov.railwaymanager.persistence.daoimpl.PassengerDaoImpl;
 import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
-
-import javax.persistence.EntityTransaction;
-import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 05.11.2019
@@ -14,7 +12,8 @@ import javax.transaction.Transactional;
  */
 public class PassengerService {
 
-    PassengerDaoImpl passengerDaoImpl = new PassengerDaoImpl();
+    @Autowired
+    PassengerDao passengerDao;
 
     PassengerPO createPassenger(String login, String pwd,
                                 String firstName, String lastName, String birthDate) {
@@ -23,23 +22,23 @@ public class PassengerService {
 
     }
 
-    public Boolean findPassengerByLoginAndCheckPassword(String login, String password) {
-        PassengerPO passengerPO = passengerDaoImpl.findByLogin(login);
+    public PassengerPO findPassengerByLoginAndCheckPassword(String login, String password) {
+        PassengerPO passengerPO = passengerDao.findByLogin(login);
         if (passengerPO != null) {
             if (password.isEmpty()) {
                 System.out.println("Enter password");
-                return false;
+                return null;
             } else {
                 if (password.equals(passengerPO.getPassword())) {
-                    return true;
+                    return passengerPO;
                 } else {
                     System.out.println("Incorrect password");
                 }
             }
         } else {
-            return false;
+            return null;
         }
-        return false;
+        return null;
     }
 
     void updatePassenger(String login, String pwd) {

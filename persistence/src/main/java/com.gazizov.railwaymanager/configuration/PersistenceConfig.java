@@ -1,12 +1,13 @@
 package com.gazizov.railwaymanager.configuration;
 
-import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
-import com.gazizov.railwaymanager.persistence.dao.TicketDao;
-import com.gazizov.railwaymanager.persistence.dao.TrainDao;
-import com.gazizov.railwaymanager.persistence.daoimpl.PassengerDaoImpl;
-import com.gazizov.railwaymanager.persistence.daoimpl.TicketDaoImpl;
-import com.gazizov.railwaymanager.persistence.daoimpl.TrainDaoImpl;
-import com.gazizov.railwaymanager.services.PassengerService;
+
+import com.gazizov.railwaymanager.dao.PassengerDao;
+import com.gazizov.railwaymanager.dao.TicketDao;
+import com.gazizov.railwaymanager.dao.TrainDao;
+import com.gazizov.railwaymanager.daoimpl.PassengerDaoImpl;
+import com.gazizov.railwaymanager.daoimpl.TicketDaoImpl;
+import com.gazizov.railwaymanager.daoimpl.TrainDaoImpl;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -56,7 +57,12 @@ public class PersistenceConfig {
 //    public StationDao stationDao() {
 //        return new StationDaoImpl();
 //    }
-//
+
+//    @Bean
+//    public PassengerService passengerService() {
+//        return new PassengerService();
+//    }
+
     @Bean
     public TrainDao trainDao() {
         return new TrainDaoImpl();
