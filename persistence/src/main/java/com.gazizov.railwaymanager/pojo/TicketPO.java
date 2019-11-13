@@ -2,8 +2,6 @@ package com.gazizov.railwaymanager.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
