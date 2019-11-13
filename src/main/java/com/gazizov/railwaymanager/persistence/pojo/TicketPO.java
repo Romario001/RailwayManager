@@ -2,6 +2,8 @@ package com.gazizov.railwaymanager.persistence.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -20,14 +22,23 @@ public class TicketPO {
     @Id
     @Column(name = "ticket_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ticketId;
+    private Integer ticketId;
 
-    //@ManyToOne(targetEntity = TrainPO.class)
-    @Column(name = "train_id")
-    private Long trainId;
+    @ManyToOne
+    @JoinColumn(name = "train_id")
+    private TrainPO trainPO;
 
-    @ManyToOne(targetEntity = PassengerPO.class)
-    @JoinColumn (name = "passenger_id")
+//    @Column(name = "train_id")
+//    private Integer trainId;
+
+    @ManyToOne
+    @JoinColumn(name = "passenger_id")
     private PassengerPO passengerPO;
 
+
+    @Override
+    public String toString() {
+        return "TicketPO{" +
+                "ticketId=" + ticketId;
+    }
 }

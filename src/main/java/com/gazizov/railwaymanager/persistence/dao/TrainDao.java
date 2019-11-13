@@ -21,6 +21,6 @@ public interface TrainDao {
 
     Collection<TrainPO> findTrainByRoute();
 
-    Collection<PassengerPO> findAllTrainPassangers();
+    Collection<PassengerPO> findAllTrainPassengers();
     
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @author Roman Gazizov
  */
 
-@Embeddable
+//@Embeddable
 class StationTrainId implements Serializable {
     @Column(name="station_id")
     private Integer stationId;
@@ -23,8 +23,8 @@ class StationTrainId implements Serializable {
 
 @Getter
 @Setter
-@Entity
-@Table(name = "schedule")
+//@Entity
+//@Table(name = "schedule")
 public class SchedulePO {
 
     @EmbeddedId

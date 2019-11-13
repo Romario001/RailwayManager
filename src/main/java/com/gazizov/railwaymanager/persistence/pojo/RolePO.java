@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Getter
 @AllArgsConstructor
-@Table(name="roles")
+//@Table(name="roles")
 public enum RolePO {
     STAFF(1),
     PASSENGER(2);

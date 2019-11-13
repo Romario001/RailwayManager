@@ -12,10 +12,10 @@
 
                 <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>
                 <class>com.gazizov.railwaymanager.persistence.pojo.TicketPO</class>
-<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
-<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
-<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
-<!--                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>-->
+                <class>com.gazizov.railwaymanager.persistence.pojo.TrainPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.StationPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.SchedulePO</class>
+<!--                <class>com.gazizov.railwaymanager.persistence.pojo.</class>-->
 
         <properties>
 <!--            <property name="persistenceXmlLocation" value="classpath*:persistence.xml" />-->
@@ -23,6 +23,7 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/
             railwaymanager?useUnicode=true&amp;serverTimezone=UTC&amp;createDatabaseIfNotExists=true"/>
+
         </properties>
 
     </persistence-unit>

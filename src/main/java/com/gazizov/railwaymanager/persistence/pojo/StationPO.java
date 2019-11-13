@@ -13,14 +13,14 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity
-@Table(name="stations")
+//@Entity
+//@Table(name="stations")
 public class StationPO {
 
     @Id
     @Column(name="station_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long stationId;
+    private Integer stationId;
 
     @Column(name="station_name")
     private String stationName;

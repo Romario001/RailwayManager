@@ -2,8 +2,11 @@ package com.gazizov.railwaymanager.configuration;
 
 import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
 import com.gazizov.railwaymanager.persistence.dao.TicketDao;
+import com.gazizov.railwaymanager.persistence.dao.TrainDao;
 import com.gazizov.railwaymanager.persistence.daoimpl.PassengerDaoImpl;
 import com.gazizov.railwaymanager.persistence.daoimpl.TicketDaoImpl;
+import com.gazizov.railwaymanager.persistence.daoimpl.TrainDaoImpl;
+import com.gazizov.railwaymanager.services.PassengerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -49,20 +52,19 @@ public class PersistenceConfig {
         return new TicketDaoImpl();
     }
 
-//    @Bean
+    //    @Bean
 //    public StationDao stationDao() {
 //        return new StationDaoImpl();
 //    }
 //
-//    @Bean
-//    public TrainDao trainDao() {
-//        return new TrainDaoImpl();
-//    }
-//
-
+    @Bean
+    public TrainDao trainDao() {
+        return new TrainDaoImpl();
+    }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(PersistenceUnitManager persistenceUnitManager) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(PersistenceUnitManager
+                                                                               persistenceUnitManager) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory
                 = new LocalContainerEntityManagerFactoryBean();
 
@@ -78,7 +80,9 @@ public class PersistenceConfig {
         DefaultPersistenceUnitManager persistenceUnitManager = new DefaultPersistenceUnitManager();
 
         persistenceUnitManager.setDataSources(new HashMap<String, DataSource>() {
-            { put("ds_railwaymanager", dataSource); }
+            {
+                put("ds_railwaymanager", dataSource);
+            }
         });
         persistenceUnitManager.setPersistenceXmlLocation("classpath*:persistence.xml");
 

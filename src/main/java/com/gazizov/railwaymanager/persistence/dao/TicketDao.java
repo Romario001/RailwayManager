@@ -14,5 +14,7 @@ public interface TicketDao {
 
     void buyTicket(PassengerPO passengerPO);
 
+    void saveTicket(TicketPO ticketPO);
+
     Collection<TicketPO> findAllTicketsToTrain();
 }

@@ -1,5 +1,6 @@
 package com.gazizov.railwaymanager.persistence.pojo;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,8 +15,6 @@ import java.util.List;
  *
  * @author Roman Gazizov
  */
-
-@ToString
 @Getter
 @Setter
 @Entity
@@ -25,8 +24,7 @@ public class PassengerPO {
     @Id
     @Column(name = "passenger_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@OneToMany(targetEntity = TicketPO.class)
-    private Long passengerId;
+    private Integer passengerId;
 
     @Column(name = "login")
     private String login;
@@ -46,13 +44,31 @@ public class PassengerPO {
     @Column(name = "role_id")
     private Integer roleId;
 
-    @OneToMany(mappedBy = "passengers")
-    private List<TicketPO> passengerTickets;
+    @Column(name = "active")
+//    @Builder.Default
+    private boolean active = true;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "passengerPO", fetch = FetchType.EAGER)
+    private List<TicketPO> passengerTickets = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "PassengerPO{" +
+                "passengerId=" + passengerId +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", roleId=" + roleId +
+                ", passengerTickets=" + passengerTickets +
+                ", active=" + active +
+                '}';
+    }
+}
 
-    //private Boolean active;
+//private Boolean active;
 
 //    private List<RolePO> roles = new ArrayList<>();
 
-}
+
