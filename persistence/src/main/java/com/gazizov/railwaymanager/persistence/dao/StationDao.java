@@ -1,7 +1,7 @@
-package com.gazizov.railwaymanager.dao;
+package com.gazizov.railwaymanager.persistence.dao;
 
-import com.gazizov.railwaymanager.pojo.StationPO;
-import com.gazizov.railwaymanager.pojo.TrainPO;
+import com.gazizov.railwaymanager.persistence.pojo.StationPO;
+import com.gazizov.railwaymanager.persistence.pojo.TrainPO;
 
 import java.util.Collection;
 

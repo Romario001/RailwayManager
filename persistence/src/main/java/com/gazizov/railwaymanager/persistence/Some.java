@@ -1,11 +1,11 @@
-package com.gazizov.railwaymanager;
+package com.gazizov.railwaymanager.persistence;
 
-import com.gazizov.railwaymanager.configuration.PersistenceConfig;
-import com.gazizov.railwaymanager.dao.PassengerDao;
-import com.gazizov.railwaymanager.dao.TrainDao;
-import com.gazizov.railwaymanager.pojo.PassengerPO;
-import com.gazizov.railwaymanager.pojo.TicketPO;
-import com.gazizov.railwaymanager.pojo.TrainPO;
+import com.gazizov.railwaymanager.persistence.configuration.PersistenceConfig;
+import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
+import com.gazizov.railwaymanager.persistence.dao.TrainDao;
+import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
+import com.gazizov.railwaymanager.persistence.pojo.TicketPO;
+import com.gazizov.railwaymanager.persistence.pojo.TrainPO;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Roman Gazizov
  */
-public class some {
+public class Some {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PersistenceConfig.class);

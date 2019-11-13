@@ -1,4 +1,4 @@
-package com.gazizov.railwaymanager.pojo;
+package com.gazizov.railwaymanager.persistence.pojo;
 
 
 import lombok.Getter;
@@ -13,6 +13,7 @@ import java.util.List;
  *
  * @author Roman Gazizov
  */
+
 @Getter
 @Setter
 @Entity

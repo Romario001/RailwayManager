@@ -1,9 +1,7 @@
-package com.gazizov.railwaymanager.pojo;
+package com.gazizov.railwaymanager.persistence.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import javax.persistence.Table;
 
 /**
  * 25.10.2019

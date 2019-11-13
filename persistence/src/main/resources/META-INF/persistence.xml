@@ -10,11 +10,11 @@
 
         <non-jta-data-source>ds_railwaymanager</non-jta-data-source>
 
-                <class>com.gazizov.railwaymanager.pojo.PassengerPO</class>
-                <class>com.gazizov.railwaymanager.pojo.TicketPO</class>
-                <class>com.gazizov.railwaymanager.pojo.TrainPO</class>
-                <class>com.gazizov.railwaymanager.pojo.StationPO</class>
-                <class>com.gazizov.railwaymanager.pojo.SchedulePO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.PassengerPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.TicketPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.TrainPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.StationPO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.SchedulePO</class>
 <!--                <class>com.gazizov.railwaymanager.services.PassengerService</class>-->
 <!--                <class>com.gazizov.railwaymanager.persistence.pojo.</class>-->
 

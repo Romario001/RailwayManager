@@ -1,4 +1,4 @@
-package com.gazizov.railwaymanager.pojo;
+package com.gazizov.railwaymanager.persistence.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

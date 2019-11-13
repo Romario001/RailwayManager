@@ -1,12 +1,12 @@
-package com.gazizov.railwaymanager.configuration;
+package com.gazizov.railwaymanager.persistence.configuration;
 
 
-import com.gazizov.railwaymanager.dao.PassengerDao;
-import com.gazizov.railwaymanager.dao.TicketDao;
-import com.gazizov.railwaymanager.dao.TrainDao;
-import com.gazizov.railwaymanager.daoimpl.PassengerDaoImpl;
-import com.gazizov.railwaymanager.daoimpl.TicketDaoImpl;
-import com.gazizov.railwaymanager.daoimpl.TrainDaoImpl;
+import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
+import com.gazizov.railwaymanager.persistence.dao.TicketDao;
+import com.gazizov.railwaymanager.persistence.dao.TrainDao;
+import com.gazizov.railwaymanager.persistence.daoimpl.PassengerDaoImpl;
+import com.gazizov.railwaymanager.persistence.daoimpl.TicketDaoImpl;
+import com.gazizov.railwaymanager.persistence.daoimpl.TrainDaoImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,24 +24,14 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 
 /**
- * 06.11.2019
+ * 06.11.2019passengers
  *
  * @author Roman Gazizov
  */
 
 @Configuration
 @EnableTransactionManagement
-//@PropertySource("classpath:persistence-mysql.properties")
-//@ComponentScan("com.gazizov.railwaymanager.persistence")
 public class PersistenceConfig {
-
-
-//    private final Environment environment;
-//
-//    public PersistenceConfig(Environment environment) {
-//        super();
-//        this.environment = environment;
-//    }
 
     @Bean
     public PassengerDao passengerDao() {
@@ -90,7 +80,7 @@ public class PersistenceConfig {
                 put("ds_railwaymanager", dataSource);
             }
         });
-        persistenceUnitManager.setPersistenceXmlLocation("classpath*:persistence.xml");
+        persistenceUnitManager.setPersistenceXmlLocation("classpath*:META-INF/persistence.xml");
 
         return persistenceUnitManager;
     }
