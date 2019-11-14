@@ -7,7 +7,6 @@ import com.gazizov.railwaymanager.persistence.dao.TrainDao;
 import com.gazizov.railwaymanager.persistence.daoimpl.PassengerDaoImpl;
 import com.gazizov.railwaymanager.persistence.daoimpl.TicketDaoImpl;
 import com.gazizov.railwaymanager.persistence.daoimpl.TrainDaoImpl;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
