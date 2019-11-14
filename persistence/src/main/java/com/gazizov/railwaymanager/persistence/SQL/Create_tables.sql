@@ -39,11 +39,22 @@ create TABLE railwaymanager.schedule
 
 create TABLE railwaymanager.routes
 (
-    route_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    route_id          INTEGER AUTO_INCREMENT PRIMARY KEY,
     route_name        VARCHAR(64) NOT NULL,
-    station_number    INTEGER NOT NULL ,
+    train_id          INTEGER
+);
+
+
+create TABLE railwaymanager.route_segments
+(
+    route_segments_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    route_id          INTEGER NOT NULL,
     station_id        INTEGER NOT NULL,
-    train_id          INTEGER NOT NULL
+    order_number      INTEGER NOT NULL,
+    FOREIGN KEY (route_id) REFERENCES railwaymanager.routes (route_id)
+    ON delete CASCADE ON update CASCADE,
+    FOREIGN KEY (station_id) REFERENCES railwaymanager.stations (station_id)
+    ON delete CASCADE ON update CASCADE
 );
 
 create TABLE railwaymanager.tickets

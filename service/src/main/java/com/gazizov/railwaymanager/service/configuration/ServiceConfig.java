@@ -2,6 +2,7 @@ package com.gazizov.railwaymanager.service.configuration;
 
 import com.gazizov.railwaymanager.persistence.configuration.PersistenceConfig;
 import com.gazizov.railwaymanager.service.PassengerService;
+import com.gazizov.railwaymanager.service.RouteService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -24,5 +25,10 @@ public class ServiceConfig {
     @Bean
     public PassengerService passengerService() {
         return new PassengerService();
+    }
+
+    @Bean
+    public RouteService routeService() {
+        return new RouteService();
     }
 }

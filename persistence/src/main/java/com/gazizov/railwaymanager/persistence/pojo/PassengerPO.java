@@ -59,8 +59,8 @@ public class PassengerPO {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate='" + birthDate + '\'' +
-                ", roleId=" + roleId +
-                ", passengerTickets=" + passengerTickets +
+                ", roleId=" + roleId + '\'' +
+                ", passengerTickets=" + passengerTickets + '\'' +
                 ", active=" + active +
                 '}';
     }

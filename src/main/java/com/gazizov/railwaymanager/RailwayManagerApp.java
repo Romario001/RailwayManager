@@ -2,11 +2,12 @@ package com.gazizov.railwaymanager;
 
 
 import com.gazizov.railwaymanager.persistence.dao.PassengerDao;
+import com.gazizov.railwaymanager.persistence.dao.RouteDao;
+import com.gazizov.railwaymanager.persistence.dao.StationDao;
 import com.gazizov.railwaymanager.persistence.dao.TrainDao;
-import com.gazizov.railwaymanager.persistence.pojo.PassengerPO;
-import com.gazizov.railwaymanager.persistence.pojo.TicketPO;
-import com.gazizov.railwaymanager.persistence.pojo.TrainPO;
+import com.gazizov.railwaymanager.persistence.pojo.*;
 import com.gazizov.railwaymanager.service.PassengerService;
+import com.gazizov.railwaymanager.service.RouteService;
 import com.gazizov.railwaymanager.service.configuration.ServiceConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -26,8 +27,12 @@ public class RailwayManagerApp {
 
         PassengerDao passengerDao = context.getBean(PassengerDao.class);
         TrainDao trainDao = context.getBean(TrainDao.class);
+        RouteDao routeDao = context.getBean(RouteDao.class);
+        StationDao stationDao = context.getBean(StationDao.class);
 
         PassengerService passengerService = context.getBean(PassengerService.class);
+        RouteService routeService = context.getBean(RouteService.class);
+
 //        TicketDao ticketDao = context.getBean(TicketDao.class);
 
         PassengerPO p1 = new PassengerPO();
@@ -59,12 +64,22 @@ public class RailwayManagerApp {
         p1.setPassengerTickets(tl1);
 
         passengerDao.savePassenger(p1);
-        passengerDao.findAll().stream().forEach(System.out::println);
+//        passengerDao.findAll().stream().forEach(System.out::println);
 
 
         System.out.println();
-        System.out.println(passengerService.findPassengerByLoginAndCheckPassword("TheFirst3", "FirstMan"));
+        System.out.println(passengerService.findPassengerByLoginAndCheckPassword("TheFirst", "FirstMan"));
 
+        StationPO stationPO1 = new StationPO();
+        stationPO1.setStationName("Moskva - St.Peterburg");
+        stationDao.addStation(stationPO1);
+
+        RoutePO routePO1 = new RoutePO();
+        routePO1.setRouteName("Capitals");
+        routeDao.saveRoute(routePO1);
+
+
+        System.out.println(routeService.findAllRoutesByStation(1));
 
     }
 }

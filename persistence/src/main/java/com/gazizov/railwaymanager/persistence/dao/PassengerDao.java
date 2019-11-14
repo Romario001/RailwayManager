@@ -9,6 +9,7 @@ import java.util.Collection;
  *
  * @author Roman Gazizov
  */
+
 public interface PassengerDao {
 
     void savePassenger(PassengerPO passengerPO);

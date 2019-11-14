@@ -15,6 +15,7 @@
                 <class>com.gazizov.railwaymanager.persistence.pojo.TrainPO</class>
                 <class>com.gazizov.railwaymanager.persistence.pojo.StationPO</class>
                 <class>com.gazizov.railwaymanager.persistence.pojo.SchedulePO</class>
+                <class>com.gazizov.railwaymanager.persistence.pojo.RoutePO</class>
 <!--                <class>com.gazizov.railwaymanager.services.PassengerService</class>-->
 <!--                <class>com.gazizov.railwaymanager.persistence.pojo.</class>-->
 

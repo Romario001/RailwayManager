@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 25.10.2019
@@ -13,8 +15,8 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-//@Entity
-//@Table(name="stations")
+@Entity
+@Table(name="stations")
 public class StationPO {
 
     @Id
@@ -24,6 +26,11 @@ public class StationPO {
 
     @Column(name="station_name")
     private String stationName;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO")
+    private List<RouteSegmentsPO> allRouteSegmentsWithStation = new ArrayList<>();
+
 
     //private Map<Integer, Date> stationSchedule; //Integer - trainId
     // /Вопрос по поводу совпадения таблиц с сущностями
