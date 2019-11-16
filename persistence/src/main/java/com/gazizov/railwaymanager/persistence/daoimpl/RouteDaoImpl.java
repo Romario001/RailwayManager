@@ -37,7 +37,7 @@ public class RouteDaoImpl implements RouteDao {
         String queryString = "SELECT r" +
                 " FROM RoutePO r,RouteSegmentsPO rs" +
                 " WHERE r.routeId = rs.routePO.routeId and " +
-                "rs.stationPO = :stationId";
+                " rs.stationPO.stationId = :stationId";
 
         Query query = entityManager.createQuery(queryString);
         query.setParameter("stationId", stationId);

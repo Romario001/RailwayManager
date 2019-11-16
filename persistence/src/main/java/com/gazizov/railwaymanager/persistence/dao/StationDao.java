@@ -10,10 +10,13 @@ import java.util.Collection;
  *
  * @author Roman Gazizov
  */
+
 public interface StationDao {
 
     void addStation (StationPO stationPO);
 
     Collection<TrainPO> findTrainByStation();
+
+    int findStationCount();
 
 }

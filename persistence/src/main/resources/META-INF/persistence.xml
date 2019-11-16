@@ -16,12 +16,12 @@
                 <class>com.gazizov.railwaymanager.persistence.pojo.StationPO</class>
                 <class>com.gazizov.railwaymanager.persistence.pojo.SchedulePO</class>
                 <class>com.gazizov.railwaymanager.persistence.pojo.RoutePO</class>
-<!--                <class>com.gazizov.railwaymanager.services.PassengerService</class>-->
-<!--                <class>com.gazizov.railwaymanager.persistence.pojo.</class>-->
+                <class>com.gazizov.railwaymanager.persistence.pojo.RouteSegmentsPO</class>
 
         <properties>
 <!--            <property name="persistenceXmlLocation" value="classpath*:persistence.xml" />-->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/
             railwaymanager?useUnicode=true&amp;serverTimezone=UTC&amp;createDatabaseIfNotExists=true"/>

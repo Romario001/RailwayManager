@@ -1,6 +1,7 @@
 package com.gazizov.railwaymanager.service.configuration;
 
 import com.gazizov.railwaymanager.persistence.configuration.PersistenceConfig;
+import com.gazizov.railwaymanager.service.OptimizeRouteService;
 import com.gazizov.railwaymanager.service.PassengerService;
 import com.gazizov.railwaymanager.service.RouteService;
 import org.springframework.context.annotation.Bean;
@@ -30,5 +31,10 @@ public class ServiceConfig {
     @Bean
     public RouteService routeService() {
         return new RouteService();
+    }
+
+    @Bean
+    public OptimizeRouteService optimizeRouteService() {
+        return new OptimizeRouteService();
     }
 }

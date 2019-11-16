@@ -49,6 +49,11 @@ public class PersistenceConfig {
     }
 
     @Bean
+    public RouteSegmentDao routeSegmentDao() {
+        return new RouteSegmentDaoImpl();
+    }
+
+    @Bean
     public RouteDao routeDao() {
         return new RouteDaoImpl();
     }

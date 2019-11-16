@@ -28,9 +28,21 @@ public class StationPO {
     private String stationName;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO")
-    private List<RouteSegmentsPO> allRouteSegmentsWithStation = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO1")
+    private List<RouteSegmentsPO> allRouteSegmentsWithStartStation = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO2")
+    private List<RouteSegmentsPO> allRouteSegmentsWithEndStation = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "StationPO{" +
+                "stationId=" + stationId +
+                ", stationName='" + stationName + '\'' +
+                ", allRouteSegmentsWithStartStation=" + allRouteSegmentsWithStartStation +
+                ", allRouteSegmentsWithEndStation=" + allRouteSegmentsWithEndStation +
+                '}';
+    }
 
     //private Map<Integer, Date> stationSchedule; //Integer - trainId
     // /Вопрос по поводу совпадения таблиц с сущностями

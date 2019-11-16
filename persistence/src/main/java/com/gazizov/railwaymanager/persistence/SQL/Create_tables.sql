@@ -49,11 +49,15 @@ create TABLE railwaymanager.route_segments
 (
     route_segments_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     route_id          INTEGER NOT NULL,
-    station_id        INTEGER NOT NULL,
+    station_id_start  INTEGER NOT NULL,
+    station_id_end    INTEGER NOT NULL,
     order_number      INTEGER NOT NULL,
+    travel_time       INTEGER NOT NULL,
     FOREIGN KEY (route_id) REFERENCES railwaymanager.routes (route_id)
     ON delete CASCADE ON update CASCADE,
-    FOREIGN KEY (station_id) REFERENCES railwaymanager.stations (station_id)
+  FOREIGN KEY (station_id_start) REFERENCES railwaymanager.stations (station_id)
+    ON delete CASCADE ON update CASCADE,
+  FOREIGN KEY (station_id_end) REFERENCES railwaymanager.stations (station_id)
     ON delete CASCADE ON update CASCADE
 );
 
