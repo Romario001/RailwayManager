@@ -7,9 +7,7 @@ import com.gazizov.railwaymanager.persistence.pojo.StationPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 16.11.2019
@@ -43,85 +41,65 @@ Sample Output:
 public class OptimizeRouteService {
 
     @Autowired
-    static RouteSegmentDao routeSegmentDao;
+    RouteSegmentDao routeSegmentDao;
 
     @Autowired
-    static RouteSegmentsPO routeSegmentsPO;
+    RouteSegmentsPO routeSegmentsPO;
 
     @Autowired
-    static StationDao stationDao;
+    StationDao stationDao;
 
     @Autowired
-    static StationPO stationPO;
+    StationPO stationPO;
 
-//    private static int stationFrom, stationTo;//от клиента
+    public Collection<RouteSegmentsPO> findStationsByTheWay(Integer stationFrom, Integer stationTo) throws Exception {
 
-    //    Завайрили это все
-//    private static class Segments {
-//        int station_id_from;
-//        int station_id_to;
-//        int weight; // пока weight=1, потом будем определять расстояние/время/деньги
-//
-//        private Segments(int station_id_from, int station_id_to, int weight) {
-//            this.station_id_from = station_id_from;
-//            this.station_id_to = station_id_to;
-//            this.weight = weight;
-//        }
-//    }
-
-    // Завайрили
-//    private static void initialize(Scanner in) {
-//        stationCount = in.nextInt();
-//        segmentsCount = in.nextInt();
-//        segments = new LinkedList<>();
-//        for (int i = 0; i < segmentsCount; i++) {
-//            segments.add(new Segments(in.nextInt(), in.nextInt(), in.nextInt()));
-//        }
-//        stationFrom = in.nextInt();
-//        stationTo = in.nextInt();
-//    }
-
-    public Integer findCountOfStationsByTheWay(Integer stationFrom, Integer stationTo) throws Exception {
-//        Scanner in = new Scanner(System.in);
-//        initialize(in);
-
-        int stationCount = stationDao.findStationCount();
-        int segmentsCount = routeSegmentDao.findSegmentsCount();
+        long stationCount = stationDao.findStationCount();
+        long segmentsCount = routeSegmentDao.findSegmentsCount();
         Collection<RouteSegmentsPO> segments = routeSegmentDao.findAllRouteSegments();
+        Collection<RouteSegmentsPO> preparedSegments = new ArrayList<>();
 
         if (segmentsCount != 0) {
-            List<Integer> usedStations = new LinkedList<>();
+            List<Integer> usedStations = new ArrayList<>();
             usedStations.add(stationFrom);
             int currentStation = stationFrom;
-            int result = 0;
+            long result = 0l;
 
-            //костыль на случай, если из заданного старта есть прямой
-            //путь в заданный финиш, т.к. итоговый путь может оказаться
-            //больше него
-            int directLineWeight = 0;
+
+            //Если из заданного старта есть прямой путь в заданный финиш
+
+            long directLineWeight = 0;
 
             for (RouteSegmentsPO r : segments) {
-                if (routeSegmentsPO.getStationPO1().getStationId() == stationFrom
-                        && routeSegmentsPO.getStationPO2().getStationId() == stationTo) {
-                    directLineWeight = routeSegmentsPO.getTravelTime();
+
+                if (r.getStationPO1().getStationId() == stationFrom
+                        && r.getStationPO2().getStationId() == stationTo) {
+
+                    System.out.println("direct travel =");
+                    directLineWeight = r.getTravelTime();
+                    preparedSegments.add(r);
+
+                    return preparedSegments;
                 }
+
             }
 
             while (currentStation != stationTo && usedStations.size() != stationCount) {
-                List<RouteSegmentsPO> currentSegmentsList = new LinkedList<>();
+                List<RouteSegmentsPO> currentSegmentsList = new ArrayList<>();
 
                 //составляем список возможных для использования сегментов
                 for (RouteSegmentsPO r : segments) {
-                    if (routeSegmentsPO.getStationPO1().getStationId() == currentStation &&
-                            !usedStations.contains(routeSegmentsPO.getStationPO2().getStationId())) {
+                    if (r.getStationPO1().getStationId() == currentStation &&
+                            !usedStations.contains(r.getStationPO2().getStationId())) {
                         currentSegmentsList.add(r);
                     }
                 }
 
+                System.out.println(currentSegmentsList);
+
                 //если не найдено ни одного подходящего ребра
                 if (currentSegmentsList.size() == 0) {
                     System.out.println(-1);
-                    return 0;
                 }
                 segments.removeAll(currentSegmentsList);
 
@@ -130,8 +108,8 @@ public class OptimizeRouteService {
                 int minWeight = Integer.MAX_VALUE;
                 RouteSegmentsPO segmentsToUsePO = null;
                 for (RouteSegmentsPO r : currentSegmentsList) {
-                    if (routeSegmentsPO.getTravelTime() + result < minWeight) {
-                        minWeight = routeSegmentsPO.getTravelTime();
+                    if (r.getTravelTime() + result < minWeight) {
+                        minWeight = r.getTravelTime();
                         segmentsToUsePO = r;
                     }
                 }
@@ -141,7 +119,9 @@ public class OptimizeRouteService {
                 //меняем текущие значения для переменных-показателей статуса
                 currentStation = segmentsToUsePO.getStationPO2().getStationId();
                 usedStations.add(segmentsToUsePO.getStationPO2().getStationId());
+                preparedSegments.add(segmentsToUsePO);
                 result += segmentsToUsePO.getTravelTime();
+
 
                 //выводит список вершин, обойденных на данный момент
 				/*for(int r : usedStations) {
@@ -152,19 +132,15 @@ public class OptimizeRouteService {
 
             //если нужного пути не существует, выводится -1
             if (currentStation != stationTo && usedStations.size() == stationCount) {
-                System.out.println(-1);
+                System.out.println("Route not found");
+                Collections.emptyList();
             } else {
-                if (directLineWeight != 0 && result > directLineWeight) {
-                    System.out.println(directLineWeight);
-                } else {
-                    System.out.println(result);
-                    return result;
-                }
+                return preparedSegments;
             }
-        } else {
-            System.out.println(-1);
-            return -1;
+
         }
-        return 47;
+        System.out.println("Route not found");
+        return Collections.emptyList();
     }
+
 }

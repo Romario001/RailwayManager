@@ -13,7 +13,9 @@ import org.springframework.context.annotation.Import;
  *
  * @author Roman Gazizov
  */
+
 @Configuration
+//@ComponentScan(basePackages = "com.gazizov.railwaymanager.service")
 @Import(PersistenceConfig.class)
 public class ServiceConfig {
 

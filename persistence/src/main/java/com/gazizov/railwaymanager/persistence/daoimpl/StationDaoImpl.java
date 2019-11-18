@@ -37,12 +37,21 @@ public class StationDaoImpl implements StationDao {
         return null;
     }
 
-    @Override
-    public int findStationCount() {
+    @Transactional
+    public long findStationCount() {
         String queryString = "SELECT COUNT(*) FROM StationPO";
         Query query = entityManager.createQuery(queryString);
 
-        return (int) query.getSingleResult();
+        return (long) query.getSingleResult();
+    }
+
+    @Transactional
+    public StationPO findStationByStationId(Integer stationId) {
+        String queryString = "SELECT s FROM StationPO s WHERE s.stationId=:stationId";
+        Query query = entityManager.createQuery(queryString);
+        query.setParameter("stationId", stationId);
+
+        return (StationPO) query.getSingleResult();
     }
 
 

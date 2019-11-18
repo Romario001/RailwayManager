@@ -26,13 +26,14 @@ public class RailwayManagerApp {
         StationDao stationDao = context.getBean(StationDao.class);
         RouteSegmentDao routeSegmentDao = context.getBean(RouteSegmentDao.class);
 
+
         PassengerService passengerService = context.getBean(PassengerService.class);
         RouteService routeService = context.getBean(RouteService.class);
         OptimizeRouteService optimizeRouteService = context.getBean(OptimizeRouteService.class);
 
 
         try {
-            System.out.println(optimizeRouteService.findCountOfStationsByTheWay(1,4));
+            System.out.println(optimizeRouteService.findStationsByTheWay(3,13));
         } catch (Exception e) {
             e.printStackTrace();
         }

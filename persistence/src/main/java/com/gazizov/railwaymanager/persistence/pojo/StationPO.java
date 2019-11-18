@@ -28,10 +28,10 @@ public class StationPO {
     private String stationName;
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO1",fetch = FetchType.EAGER)
     private List<RouteSegmentsPO> allRouteSegmentsWithStartStation = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO2")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stationPO2",fetch = FetchType.EAGER)
     private List<RouteSegmentsPO> allRouteSegmentsWithEndStation = new ArrayList<>();
 
     @Override
@@ -39,8 +39,6 @@ public class StationPO {
         return "StationPO{" +
                 "stationId=" + stationId +
                 ", stationName='" + stationName + '\'' +
-                ", allRouteSegmentsWithStartStation=" + allRouteSegmentsWithStartStation +
-                ", allRouteSegmentsWithEndStation=" + allRouteSegmentsWithEndStation +
                 '}';
     }
 

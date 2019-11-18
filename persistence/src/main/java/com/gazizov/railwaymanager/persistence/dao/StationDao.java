@@ -17,6 +17,8 @@ public interface StationDao {
 
     Collection<TrainPO> findTrainByStation();
 
-    int findStationCount();
+    long findStationCount();
+
+    StationPO findStationByStationId(Integer stationId);
 
 }

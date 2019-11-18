@@ -17,5 +17,7 @@ public interface RouteSegmentDao {
 
     Collection<RouteSegmentsPO> findAllRouteSegments();
 
-    int findSegmentsCount();
+    long findSegmentsCount();
+
+    RouteSegmentsPO findRouteSegmentsByStationId(Integer stationIdStart, Integer stationIdEnd);
 }

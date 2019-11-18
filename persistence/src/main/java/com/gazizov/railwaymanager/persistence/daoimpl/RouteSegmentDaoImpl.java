@@ -46,13 +46,26 @@ public class RouteSegmentDaoImpl implements RouteSegmentDao {
         return routeSegmentsPOList;
     }
 
-    @Override
-    public int findSegmentsCount() {
+    @Transactional
+    public long findSegmentsCount() {
         String queryString = "SELECT COUNT(*) FROM RouteSegmentsPO";
         Query query = entityManager.createQuery(queryString);
 
-        return (int) query.getSingleResult();
+        return (long) query.getSingleResult();
     }
+
+
+    @Transactional
+    public RouteSegmentsPO findRouteSegmentsByStationId(Integer stationIdStart, Integer stationIdEnd) {
+        String queryString = "SELECT s FROM RouteSegmentsPO s WHERE s.stationPO1=:stationIdStart" +
+                " and s.stationPO2=:stationIdEnd";
+        Query query = entityManager.createQuery(queryString);
+        query.setParameter("stationIdStart", stationIdStart);
+        query.setParameter("stationIdEnd", stationIdEnd);
+
+        return (RouteSegmentsPO) query.getSingleResult();
+    }
+
 
 
     @PersistenceContext(unitName = "pu_railwaymanager")

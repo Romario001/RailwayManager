@@ -3,7 +3,10 @@ package com.gazizov.railwaymanager.persistence.configuration;
 
 import com.gazizov.railwaymanager.persistence.dao.*;
 import com.gazizov.railwaymanager.persistence.daoimpl.*;
+import com.gazizov.railwaymanager.persistence.pojo.RouteSegmentsPO;
+import com.gazizov.railwaymanager.persistence.pojo.StationPO;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -25,6 +28,7 @@ import java.util.HashMap;
  */
 
 @Configuration
+@ComponentScan
 @EnableTransactionManagement
 public class PersistenceConfig {
 
@@ -46,6 +50,17 @@ public class PersistenceConfig {
     @Bean
     public TrainDao trainDao() {
         return new TrainDaoImpl();
+    }
+
+
+    @Bean
+    public StationPO stationPO() {
+        return new StationPO();
+    }
+
+    @Bean
+    public RouteSegmentsPO routeSegmentPO() {
+        return new RouteSegmentsPO();
     }
 
     @Bean

@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+import java.util.Objects;
 
 /**
  * 14.11.2019
@@ -18,7 +16,7 @@ import java.util.function.Consumer;
 @Setter
 @Entity
 @Table(name = "route_segments")
-public class RouteSegmentsPO implements Iterable {
+public class RouteSegmentsPO {
 
     @Id
     @Column(name = "route_segments_id")
@@ -44,29 +42,28 @@ public class RouteSegmentsPO implements Iterable {
     private Integer travelTime;
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RouteSegmentsPO)) return false;
+        RouteSegmentsPO that = (RouteSegmentsPO) o;
+        return routeSegmentsId.equals(that.routeSegmentsId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(routeSegmentsId);
+    }
+
+    @Override
     public String toString() {
         return "RouteSegmentsPO{" +
-                "routeSegmentsId=" + routeSegmentsId +
-                ", routePO=" + routePO +
-                ", stationPO1=" + stationPO1 +
-                ", stationPO2=" + stationPO2 +
-                ", orderNumber=" + orderNumber +
+//                "routeSegmentsId=" + routeSegmentsId +
+                ", routePO=" + routePO.getRouteName() +
+                ", stationPO1=" + stationPO1.getStationName() +
+                ", stationPO2=" + stationPO2.getStationName() +
+//                ", orderNumber=" + orderNumber +
+//                ", travelTime=" + travelTime +
                 '}';
-    }
-
-    @Override
-    public Iterator iterator() {
-        return null;
-    }
-
-    @Override
-    public void forEach(Consumer action) {
-
-    }
-
-    @Override
-    public Spliterator spliterator() {
-        return null;
     }
 }
 
