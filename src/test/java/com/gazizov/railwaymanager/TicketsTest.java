@@ -86,37 +86,5 @@ public class TicketsTest {
         assertEquals(expectedRouteSegmentsPOS, routeSegmentsPOS);
     }
 
-    @Test
-    public void checkRoutesBuilding2() throws Exception {
-        Collection<RouteSegmentsPO> routeSegmentsPOS =
-                optimizeRouteService.findStationsByTheWay(1, 8);
-
-        StationPO stationPO1 = new StationPO();
-        StationPO stationPO2 = new StationPO();
-        stationPO1.setStationName("Voronezh");
-        stationPO1.setStationId(1);
-        stationPO2.setStationName("Moskva");
-        stationPO2.setStationId(3);
-
-        RoutePO routePO = new RoutePO();
-        routePO.setRouteId(2);
-        routePO.setTrainId(3);
-        routePO.setRouteName("Voronezh-Moskva");
-
-
-        RouteSegmentsPO routeSegmentsPO1 = new RouteSegmentsPO();
-        routeSegmentsPO1.setRouteSegmentsId(4);
-        routeSegmentsPO1.setRoutePO(routePO);
-        routeSegmentsPO1.setStationPO1(stationPO1);
-        routeSegmentsPO1.setStationPO2(stationPO2);
-        routeSegmentsPO1.setOrderNumber(1);
-        routeSegmentsPO1.setTravelTime(1);
-
-        Collection<RouteSegmentsPO> expectedRouteSegmentsPOS = new ArrayList<>();
-        expectedRouteSegmentsPOS.add(routeSegmentsPO1);
-
-        assertEquals(expectedRouteSegmentsPOS, routeSegmentsPOS);
-    }
-
 }
 

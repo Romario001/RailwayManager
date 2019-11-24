@@ -59,87 +59,128 @@ public class OptimizeRouteService {
         Collection<RouteSegmentsPO> segments = routeSegmentDao.findAllRouteSegments();
         Collection<RouteSegmentsPO> preparedSegments = new ArrayList<>();
 
-        if (segmentsCount != 0) {
-            List<Integer> usedStations = new ArrayList<>();
-            usedStations.add(stationFrom);
-            int currentStation = stationFrom;
-            long result = 0l;
+
+        return findTheWay(segments,stationFrom,stationTo);
 
 
-            //Если из заданного старта есть прямой путь в заданный финиш
+//        System.out.println("temp1");
+//        System.out.println(segments);
+//
+//        if (segmentsCount != 0) {
+//            List<Integer> usedStations = new ArrayList<>();
+//            usedStations.add(stationFrom);
+//            int currentStation = stationFrom;
+//            long result = 0l;
+//
+//
+//            //Если из заданного старта есть прямой путь в заданный финиш
+//
+//            long directLineWeight = 0;
+//
+//            for (RouteSegmentsPO r : segments) {
+//
+//                if (r.getStationPO1().getStationId() == stationFrom
+//                        && r.getStationPO2().getStationId() == stationTo) {
+//
+//                    System.out.println("direct travel =");
+//                    directLineWeight = r.getTravelTime();
+//                    preparedSegments.add(r);
+//
+//                    return preparedSegments;
+//                }
+//
+//            }
+//
+//            int minWeight = Integer.MAX_VALUE;
+//            RouteSegmentsPO segmentsToUsePO = null;
+//
+//            while (currentStation != stationTo && usedStations.size() != stationCount) {
+//                List<RouteSegmentsPO> currentSegmentsList = new ArrayList<>();
+//
+////                составляем список возможных для использования сегментов
+//                for (RouteSegmentsPO r : segments) {
+//                    if (r.getStationPO1().getStationId() == currentStation
+//                            && !usedStations.contains(r.getStationPO2().getStationId())) {
+//                        currentSegmentsList.add(r);
+//                    }
+//                }
+//                System.out.println("temp2");
+//                System.out.println(currentSegmentsList);
+//
+//                //если не найдено ни одного подходящего ребра
+//                if (currentSegmentsList.size() == 0) {
+//                    System.out.println(-1);
+//                    continue;
+//                }
+//
+//
+//                //ищем в этом списке ребро, с использованием которого удастся достичь наименьшего НА ДАННЫЙ МОМЕНТ веса
+//
+//                for (RouteSegmentsPO r : currentSegmentsList) {
+//                    if (r.getTravelTime() + result < minWeight) {
+//                        minWeight = r.getTravelTime();
+//                        segmentsToUsePO = r;
+//                    }
+//                }
+//                currentSegmentsList.remove(segmentsToUsePO);
+//                segments.remove(segmentsToUsePO);
+//
+//                //меняем текущие значения для переменных-показателей статуса
+//                currentStation = segmentsToUsePO.getStationPO2().getStationId();
+//                usedStations.add(currentStation);
+//                preparedSegments.add(segmentsToUsePO);
+//                result += segmentsToUsePO.getTravelTime();
+//
+//
+//                //выводит список вершин, обойденных на данный момент
+//				/*for(int r : usedStations) {
+//					System.out.print(r);
+//				}
+//				System.out.println();*/
+//            }
+//
+//            //если нужного пути не существует, выводится -1
+//            if (currentStation != stationTo && usedStations.size() == stationCount) {
+//                System.out.println("Route not found");
+//                Collections.emptyList();
+//            } else {
+//                return preparedSegments;
+//            }
+//
+//        }
+//        System.out.println("Route not found");
+//        return Collections.emptyList();
+    }
 
-            long directLineWeight = 0;
+    Map<StationPO, Collection<RouteSegmentsPO>> mapOfWays = new HashMap<>();
 
-            for (RouteSegmentsPO r : segments) {
+    public Collection<RouteSegmentsPO> findTheWay(Collection<RouteSegmentsPO> segmentsPOCollection, int stationFrom, int stationTo) {
+        Collection<RouteSegmentsPO> currentSegmentsList = new ArrayList<>();
+        Collection<RouteSegmentsPO> resultSegmentsList = new ArrayList<>();
 
-                if (r.getStationPO1().getStationId() == stationFrom
-                        && r.getStationPO2().getStationId() == stationTo) {
-
-                    System.out.println("direct travel =");
-                    directLineWeight = r.getTravelTime();
-                    preparedSegments.add(r);
-
-                    return preparedSegments;
-                }
-
+        for (RouteSegmentsPO rs : segmentsPOCollection) {
+            if (rs.getStationPO2().getStationId() == stationTo) {
+                resultSegmentsList.add(rs);
+                return  resultSegmentsList;
             }
-
-            while (currentStation != stationTo && usedStations.size() != stationCount) {
-                List<RouteSegmentsPO> currentSegmentsList = new ArrayList<>();
-
-                //составляем список возможных для использования сегментов
-                for (RouteSegmentsPO r : segments) {
-                    if (r.getStationPO1().getStationId() == currentStation &&
-                            !usedStations.contains(r.getStationPO2().getStationId())) {
-                        currentSegmentsList.add(r);
-                    }
-                }
-
-                System.out.println(currentSegmentsList);
-
-                //если не найдено ни одного подходящего ребра
-                if (currentSegmentsList.size() == 0) {
-                    System.out.println(-1);
-                }
-                segments.removeAll(currentSegmentsList);
-
-                //ищем в этом списке ребро, с использованием которого
-                //удастся достичь наименьшего НА ДАННЫЙ МОМЕНТ веса
-                int minWeight = Integer.MAX_VALUE;
-                RouteSegmentsPO segmentsToUsePO = null;
-                for (RouteSegmentsPO r : currentSegmentsList) {
-                    if (r.getTravelTime() + result < minWeight) {
-                        minWeight = r.getTravelTime();
-                        segmentsToUsePO = r;
-                    }
-                }
-                currentSegmentsList.remove(segmentsToUsePO);
-                segments.addAll(currentSegmentsList);
-
-                //меняем текущие значения для переменных-показателей статуса
-                currentStation = segmentsToUsePO.getStationPO2().getStationId();
-                usedStations.add(segmentsToUsePO.getStationPO2().getStationId());
-                preparedSegments.add(segmentsToUsePO);
-                result += segmentsToUsePO.getTravelTime();
-
-
-                //выводит список вершин, обойденных на данный момент
-				/*for(int r : usedStations) {
-					System.out.print(r);
-				}
-				System.out.println();*/
+            if (rs.getStationPO1().getStationId() == stationFrom) {
+                currentSegmentsList.add(rs);
             }
+            segmentsPOCollection.remove(currentSegmentsList);
+        }
 
-            //если нужного пути не существует, выводится -1
-            if (currentStation != stationTo && usedStations.size() == stationCount) {
-                System.out.println("Route not found");
-                Collections.emptyList();
-            } else {
-                return preparedSegments;
-            }
+        if (currentSegmentsList.size() == 0) {
+            System.out.println("no segments found");
+            return resultSegmentsList;
+        }
+
+        for (RouteSegmentsPO rs : currentSegmentsList) {
+            mapOfWays.put(rs.getStationPO1(),
+                    findTheWay(segmentsPOCollection, rs.getStationPO2().getStationId(), stationTo));
+            System.out.println(mapOfWays.keySet());
 
         }
-        System.out.println("Route not found");
+
         return Collections.emptyList();
     }
 

@@ -16,6 +16,7 @@ import java.util.Objects;
  *
  * @author Roman Gazizov
  */
+
 public class RouteDaoImpl implements RouteDao {
 
     private EntityManager entityManager;

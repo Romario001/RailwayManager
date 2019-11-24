@@ -2,11 +2,14 @@ package com.gazizov.railwaymanager;
 
 
 import com.gazizov.railwaymanager.persistence.dao.*;
+import com.gazizov.railwaymanager.persistence.pojo.RouteSegmentsPO;
 import com.gazizov.railwaymanager.service.OptimizeRouteService;
 import com.gazizov.railwaymanager.service.PassengerService;
 import com.gazizov.railwaymanager.service.RouteService;
 import com.gazizov.railwaymanager.service.configuration.ServiceConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.util.Collection;
 
 
 /**
@@ -33,7 +36,9 @@ public class RailwayManagerApp {
 
 
         try {
-            System.out.println(optimizeRouteService.findStationsByTheWay(3,13));
+            Collection<RouteSegmentsPO> stationsByTheWay = optimizeRouteService.findStationsByTheWay(1, 13);
+            System.out.println("final");
+            System.out.println(stationsByTheWay);
         } catch (Exception e) {
             e.printStackTrace();
         }
